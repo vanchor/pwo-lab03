@@ -4,19 +4,30 @@ import java.math.BigDecimal;
 
 public class FibonacciGenerator 
 {
-    private int lastIndex = 0;
-    private BigDecimal current = new BigDecimal(0);
+    protected int lastIndex = 0;
+    protected BigDecimal current = new BigDecimal(0);
+    protected BigDecimal startValue = new BigDecimal(0);
 
-    private BigDecimal
+    protected BigDecimal
         f_1 = new BigDecimal(1),
         f_2 = new BigDecimal(0);
+    
+    public FibonacciGenerator(){}
+    
+    protected FibonacciGenerator(BigDecimal f_1, BigDecimal f_2){
+        this.f_1 = f_1;
+        this.f_2 = f_2;
+        
+        this.current = f_2;
+        this.startValue = f_2;
+    }
 
     public void reset() 
     {
         lastIndex = 0;
-        current = new BigDecimal(0);
+        current = startValue;
         f_1 = new BigDecimal(1);
-        f_2 = new BigDecimal(0);
+        f_2 = startValue;
     }
 
     public BigDecimal nextTerm() 
@@ -28,7 +39,7 @@ public class FibonacciGenerator
             f_1 = current;
         }
         else if(lastIndex==1) current = new BigDecimal(1);
-        else current = new BigDecimal(0);
+        else current = startValue;
 
         lastIndex++;
 
